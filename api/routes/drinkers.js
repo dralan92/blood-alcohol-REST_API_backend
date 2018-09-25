@@ -66,9 +66,22 @@ router.post('/', (req, res, next)=> {
 });
 
 router.patch('/:drinkerID', (req, res, next)=>{
-    res.status(200).json({
-        message : 'Drinker Updated'
+    const id = req.params.drinkerID;
+    const updateOps = {};
+    for( const ops of req.body){
+        updateOps[ops.propName] = ops.value;
+    }
+    Drinker.update({_id : id}, {$set : updateOps})
+    .exec()
+    .then(result => {
+        console.log(result);
+        res.status(200).json(result); 
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({error : err});
     });
+
 });
 
 
