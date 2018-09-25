@@ -5,6 +5,7 @@ const drinkerSchema = mongoose.Schema({
     name : String,
     email : String,
     phone : String,
+    age : Number,
     gender : String,
     weight : String,
     liters_of_blood : Number,
