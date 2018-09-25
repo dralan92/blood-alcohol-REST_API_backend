@@ -1,0 +1,14 @@
+{
+  "name": "blood-alcohol-rest",
+  "version": "1.0.0",
+  "description": "REST API for BAC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alan Sebastian",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
