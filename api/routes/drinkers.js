@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
+const moment = require('moment');
+
 const Drinker = require('../models/drinkers');
 
 router.get('/', (req, res, next)=> {
@@ -40,11 +42,17 @@ router.get('/:drinkerID', (req, res, next)=> {
 
 router.post('/', (req, res, next)=> {
 
+    const litersOfBlood = parseFloat(req.body.weight) * .07 * 1.06;
+    const alcoholRemovalRate = (((parseFloat(req.body.weight)/10)/60)/60) /1000 ;//every millisecond
+    
     const drinker = new Drinker({
 
         _id : new mongoose.Types.ObjectId(),
         name : req.body.name,
-        email : req.body.email
+        email : req.body.email,
+        weight : req.body.weight,
+        liters_of_blood : litersOfBlood,
+        alcohol_removal_rate : alcoholRemovalRate
 
     });
 

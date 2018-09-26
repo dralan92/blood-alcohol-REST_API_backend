@@ -10,8 +10,10 @@ const drinkerSchema = mongoose.Schema({
     weight : String,
     liters_of_blood : Number,
     grams_of_alcohol : Number,
+    alcohol_removal_rate : Number,
     current_time : Date,
     last_drink_time : Date,
+    time_past : Date,
     sober_time : Date,
     status : String
 });
