@@ -40,6 +40,35 @@ router.get('/:drinkerID', (req, res, next)=> {
    });
 });
 
+router.get('/email/:drinkerEmail', (req, res, next)=>{
+    const email_arg = req.params.drinkerEmail;
+    
+    Drinker.findOne({email : email_arg})
+    .exec()
+    .then(result =>{
+        console.log(result);
+        res.status(200).json(result);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({error : err});
+    });
+});
+router.get('/password/:drinkerPass', (req, res, next)=>{
+    const pass_arg = req.params.drinkerPass;
+    
+    Drinker.findOne({password : pass_arg})
+    .exec()
+    .then(result =>{
+        console.log(result);
+        res.status(200).json(result);
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({error : err});
+    });
+});
+
 router.post('/', (req, res, next)=> {
 
     const litersOfBlood = parseFloat(req.body.weight) * .07 * 1.06;
@@ -50,6 +79,7 @@ router.post('/', (req, res, next)=> {
         _id : new mongoose.Types.ObjectId(),
         name : req.body.name,
         email : req.body.email,
+        password : req.body.password,
         weight : req.body.weight,
         liters_of_blood : litersOfBlood,
         alcohol_removal_rate : alcoholRemovalRate
